@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:market_list_crud_app/utils/consts.dart';
 
 enum Screens {
-  todos,
+  list,
   stats,
 }
 
@@ -17,17 +17,12 @@ class NavBarWidget extends StatelessWidget {
 
   @override
   build(_) => BottomNavigationBar(
-        key: UniqueKey(),
-        currentIndex: Screens.values.indexOf(activeScreen),
-        onTap: (index) => onScreenSelected(Screens.values[index]),
-        items: Screens.values
-            .map(
-              (tab) => BottomNavigationBarItem(
-                label: tab == Screens.stats ? UIText.stats : UIText.todos,
-                icon:
-                    Icon(tab == Screens.todos ? Icons.list : Icons.show_chart),
-              ),
-            )
-            .toList(),
-      );
+      currentIndex: Screens.values.indexOf(activeScreen),
+      onTap: (index) => onScreenSelected(Screens.values[index]),
+      items: Screens.values
+          .map((tab) => BottomNavigationBarItem(
+                label: tab == Screens.stats ? UIText.stats : UIText.list,
+                icon: Icon(tab == Screens.list ? Icons.list : Icons.show_chart),
+              ))
+          .toList());
 }

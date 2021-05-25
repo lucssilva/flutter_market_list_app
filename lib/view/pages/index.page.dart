@@ -15,10 +15,10 @@ class IndexPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.pushNamed(_, Routes.ADD),
           child: Icon(Icons.add),
-          tooltip: UIText.addTodo,
+          tooltip: UIText.add,
         ),
         bottomNavigationBar: NavBarWidget(
-          activeScreen: Screens.todos,
+          activeScreen: Screens.list,
           onScreenSelected: (tab) {},
         ),
       );
