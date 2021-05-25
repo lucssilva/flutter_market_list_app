@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'utils/consts.dart';
+import 'view/pages/addedit.page.dart';
 import 'view/pages/index.page.dart';
 
 void main() {
@@ -11,8 +13,11 @@ void main() {
 class MarketListApp extends StatelessWidget {
   @override
   build(_) => MaterialApp(
-        home: IndexPage(),
         title: 'Market List App',
-        theme: ThemeData(primarySwatch: Colors.indigo),
+        routes: {
+          Routes.INDEX: (_) => IndexPage(),
+          Routes.ADD: (_) => AddOrEditPage(),
+        },
+        theme: ThemeData.dark().copyWith(primaryColor: Colors.tealAccent[700]),
       );
 }
