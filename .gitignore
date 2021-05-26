@@ -48,5 +48,11 @@ app.*.map.json
 
 #
 web/
-android/
-ios/
+android/*
+!android/app
+android/app/*
+!android/app/build.gradle
+ios/*
+!ios/Runner
+ios/Runner/*
+!ios/Runner/Info.plist

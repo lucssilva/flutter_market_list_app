@@ -10,6 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  camera:
+  equatable: 
+  flutter_bloc:
+  path:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
