@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:market_list_crud_app/controllers/camera/camera.bloc.dart';
+import 'package:market_list_crud_app/controllers/items/items.bloc.dart';
+import 'package:market_list_crud_app/model/item.model.dart';
 import 'package:market_list_crud_app/services/camera.helper.dart';
 import 'package:market_list_crud_app/utils/consts.dart';
 import 'package:market_list_crud_app/view/screens/camera.screen.dart';
@@ -19,8 +21,23 @@ class AddOrEditPage extends StatefulWidget {
 
 class _AddOrEditPageState extends State<AddOrEditPage> {
   String path;
+  final _nameController = TextEditingController();
+  final _priceController = TextEditingController();
 
-  void openCamera(BuildContext context) {
+  void saveItem() {
+    BlocProvider.of<ItemsBloc>(context).add(
+      ItemsAdded(
+        item: Item(
+          path: path,
+          name: _nameController.text,
+          price: double.parse(_priceController.text),
+        ),
+      ),
+    );
+    Navigator.of(context).pop();
+  }
+
+  void openCamera() {
     FocusScope.of(context).requestFocus(FocusNode()); //remove focus
     Navigator.push(
         context,
@@ -39,16 +56,20 @@ class _AddOrEditPageState extends State<AddOrEditPage> {
           centerTitle: true,
           title: Text(widget.isEditing ? UIText.edit : UIText.add),
         ),
-        body: ItemFormScreen(widget.isEditing),
+        body: ItemFormScreen(
+          isEditing: widget.isEditing,
+          nameController: _nameController,
+          priceController: _priceController,
+        ),
         floatingActionButton: ExpandableFabWidget(
           distance: Measurements.fabDistance,
           children: [
             ActionButtonWidget(
-              onPressed: () => {},
+              onPressed: () => saveItem(),
               icon: const Icon(Icons.save_rounded),
             ),
             ActionButtonWidget(
-              onPressed: () => openCamera(_),
+              onPressed: () => openCamera(),
               icon: const Icon(Icons.camera_alt_rounded),
             ),
           ],
